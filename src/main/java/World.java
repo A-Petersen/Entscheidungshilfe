@@ -16,7 +16,7 @@ public class World {
         this.situationDistribution = situationDistribution;
         this.numberOfSituations = numberOfSituations;
         while(numberOfAgents-- > 0) {
-            agents.add(new Agent());
+            agents.add(new Agent(this));
         }
     }
 
@@ -26,13 +26,27 @@ public class World {
             if ((i / (double)numberOfSituations) >= situationDistribution) situation = danger;
             for (Agent a : agents) {
                 a.runPersonalIntention(situation);
+
                 System.out.println(
                         "Agent[" + a.getId() +
                         "]:\tSD: [" + a.getStandardDeviation() + "]:\tTH: [" + a.getThreshold() + "]" +
-                        "\tAgent Situation: [" + a.getAgentSituation() + "][" + situation + "]" +
+                        "\tAgent Situation: [" + a.getAgentSituation() + "][" + situation + "]\t" + "\t\tRes[ " + ((a.getRunAwayIntention() && situation == 7) ? "CORRECT ]" : "FALSE ]") +
                         "\n\t\t\tTP_DANGER: [" + a.getTP_rate_DANGER() + "]" +
                         "\tTP_NO_DANGER: [" + a.getTP_rate_NO_DANGER() + "]\n");
             }
         }
+
+        for (int i = 0; i < numberOfSituations; i++) {
+            if ((i / (double) numberOfSituations) >= situationDistribution) situation = danger;
+            for (Agent a : agents) {
+                a.runInfluencedReaction();
+            }
+        }
+    }
+
+
+    public List<Agent> getAgents() {
+        return agents;
     }
 }
+

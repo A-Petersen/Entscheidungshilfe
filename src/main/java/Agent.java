@@ -1,5 +1,6 @@
 import org.uncommons.maths.random.GaussianGenerator;
 
+import java.util.List;
 import java.util.Random;
 
 public class Agent {
@@ -13,6 +14,7 @@ public class Agent {
     private static int agent_ids = 0;
 
     private int id;
+    private World world;
 
     private boolean runAway;
     private boolean runAwayIntention;
@@ -29,7 +31,8 @@ public class Agent {
     private GaussianGenerator gGenDanger;
     private GaussianGenerator gGenNoDanger;
 
-    public Agent() {
+    public Agent(World world) {
+        this.world = world;
         this.id = agent_ids;
         this.standardDeviation = l_SD + ((u_SD - l_SD) * rGen.nextDouble());
         this.threshold = l_TH + ((u_TH - l_TH) * rGen.nextDouble());
@@ -53,8 +56,21 @@ public class Agent {
             if (!runAwayIntention) COUNT_TP_NO_DANGER++;
             numberOfSituations_NO_DANGER++;
         }
+    }
 
-
+    void runInfluencedReaction() {
+        List<Agent> agents = world.getAgents();
+        double P_DANGER = 1;
+        double P_NO_DANGER = 1;
+        for (Agent a : agents) {
+            P_DANGER *= a.getRunAwayIntention() ?
+                    a.getTP_rate_DANGER() :
+                    1.0 - a.getTP_rate_NO_DANGER();
+            P_NO_DANGER *= a.getRunAwayIntention() ?
+                    1.0 - a.getTP_rate_DANGER() :
+                    a.getTP_rate_NO_DANGER();
+        }
+        System.out.println("P_DANGER: [" + P_DANGER + "]\tP_NO_DANGER: [" + P_NO_DANGER + "]");
     }
 
     double getTP_rate_DANGER () {
@@ -80,5 +96,9 @@ public class Agent {
 
     public double getAgentSituation() {
         return agentSituation;
+    }
+
+    public boolean getRunAwayIntention() {
+        return runAwayIntention;
     }
 }
