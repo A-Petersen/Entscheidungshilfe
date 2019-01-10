@@ -36,12 +36,15 @@ public class World {
             }
         }
 
-        for (int i = 0; i < numberOfSituations; i++) {
-            if ((i / (double) numberOfSituations) >= situationDistribution) situation = danger;
+//        int correct = 0;
+//        for (int i = 0; i < numberOfSituations; i++) {
+//            if ((i / (double) numberOfSituations) >= situationDistribution) situation = danger;
             for (Agent a : agents) {
                 a.runInfluencedReaction();
+//                if (a.runAway() == (situation == 7)) correct++;
             }
-        }
+//        }
+//        System.out.println("Correct: " + ((double)numberOfSituations/correct));
     }
 
 
