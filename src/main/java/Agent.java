@@ -17,16 +17,32 @@ public class Agent {
     private World world;
 
     private boolean runAway;
+    private boolean runAwayThresholdMeanAgent;
     private boolean runAwayIntention;
+
     private int COUNT_TP_DANGER = 0;
     private double TP_rate_DANGER = 0;
     private int COUNT_TP_NO_DANGER = 0;
     private double TP_rate_NO_DANGER = 0;
+    private int COUNT_TP_DANGER_INFLUENCED = 0;
+    private double TP_rate_DANGER_INFLUENCED = 0;
+    private int COUNT_TP_NO_DANGER_INFLUENCED = 0;
+    private double TP_rate_NO_DANGER_INFLUENCED = 0;
+    private int COUNT_TP_DANGER_INFLUENCED_AVG = 0;
+    private double TP_rate_DANGER_INFLUENCED_AVG = 0;
+    private int COUNT_TP_NO_DANGER_INFLUENCED_AVG = 0;
+    private double TP_rate_NO_DANGER_INFLUENCED_AVG = 0;
+
     private int numberOfSituations_DANGER = 0;
     private int numberOfSituations_NO_DANGER = 0;
+    private int numberOfSituations_DANGER_INFLUENCED = 0;
+    private int numberOfSituations_NO_DANGER_INFLUENCED = 0;
+    private int numberOfSituations_DANGER_INFLUENCED_AVG = 0;
+    private int numberOfSituations_NO_DANGER_INFLUENCED_AVG = 0;
 
     private double standardDeviation;
     private double threshold;
+    private double TPFP_Treshold;
 
     private double agentSituation;
 
@@ -58,22 +74,47 @@ public class Agent {
             if (!runAwayIntention) COUNT_TP_NO_DANGER++;
             numberOfSituations_NO_DANGER++;
         }
+
+        TP_rate_DANGER = getTP_rate_DANGER();
+        TP_rate_NO_DANGER = getTP_rate_NO_DANGER();
+        TPFP_Treshold = ( TP_rate_DANGER + (1 - TP_rate_NO_DANGER) ) / 2;
     }
 
     void runInfluencedReaction(int situation) {
         List<Agent> agents = world.getAgents();
 
         double TP_rate_DANGER_AGENTS;
+        double agentThreshold = 0;
         int dangerDetect = 0;
         for (Agent a : agents) {
+            agentThreshold += a.getTPFP_Treshold();
             if (a.getRunAwayIntention()) dangerDetect++;
         }
+        agentThreshold /= agents.size();
+
         TP_rate_DANGER_AGENTS = (double)dangerDetect / agents.size();
 
-        double TPFP_Treshold = ( TP_rate_DANGER + (1 - TP_rate_NO_DANGER) ) / 2;
-        if (TP_rate_DANGER_AGENTS > TPFP_Treshold) runAway = true;
 
-        System.out.println("AGENT[" + id + "]\tRUN: [" + runAway + "][" + situation + "]\tD: [" + TP_rate_DANGER_AGENTS + "]- TH[" + TPFP_Treshold + "]");
+        runAway = false;
+        runAwayThresholdMeanAgent = false;
+        if (TP_rate_DANGER_AGENTS > TPFP_Treshold) runAway = true;
+        if (situation == World.danger) {
+            if (runAway) COUNT_TP_DANGER_INFLUENCED++;
+            numberOfSituations_DANGER_INFLUENCED++;
+        } else {
+            if (!runAway) COUNT_TP_NO_DANGER_INFLUENCED++;
+            numberOfSituations_NO_DANGER_INFLUENCED++;
+        }
+        if (TP_rate_DANGER_AGENTS > agentThreshold) runAwayThresholdMeanAgent = true;
+        if (situation == World.danger) {
+            if (runAwayThresholdMeanAgent) COUNT_TP_DANGER_INFLUENCED_AVG++;
+            numberOfSituations_DANGER_INFLUENCED_AVG++;
+        } else {
+            if (!runAwayThresholdMeanAgent) COUNT_TP_NO_DANGER_INFLUENCED_AVG++;
+            numberOfSituations_NO_DANGER_INFLUENCED_AVG++;
+        }
+
+        System.out.println("AGENT[" + id + "]\tRUN: [" + runAway + "][" + situation + "]\tMEAN: [" + TP_rate_DANGER_AGENTS + "] - TH[" + TPFP_Treshold + "]\t - MEAN_TH[" + agentThreshold + "]");
     }
 
     double getTP_rate_DANGER () {
@@ -85,7 +126,6 @@ public class Agent {
         TP_rate_NO_DANGER = (double)COUNT_TP_NO_DANGER / numberOfSituations_NO_DANGER;
         return TP_rate_NO_DANGER;
     }
-
 
     public int getId() {
         return id;
@@ -107,7 +147,35 @@ public class Agent {
         return runAwayIntention;
     }
 
+    public boolean isRunAwayThresholdMeanAgent() {
+        return runAwayThresholdMeanAgent;
+    }
+
     public boolean runAway() {
         return runAway;
+    }
+
+    public double getTPFP_Treshold() {
+        return TPFP_Treshold;
+    }
+
+    public double getTP_rate_DANGER_INFLUENCED() {
+        TP_rate_DANGER_INFLUENCED = (double)COUNT_TP_DANGER_INFLUENCED / numberOfSituations_DANGER_INFLUENCED;
+        return TP_rate_DANGER_INFLUENCED;
+    }
+
+    public double getTP_rate_NO_DANGER_INFLUENCED() {
+        TP_rate_NO_DANGER_INFLUENCED = (double)COUNT_TP_NO_DANGER_INFLUENCED / numberOfSituations_NO_DANGER_INFLUENCED;
+        return TP_rate_NO_DANGER_INFLUENCED;
+    }
+
+    public double getTP_rate_DANGER_INFLUENCED_AVG() {
+        TP_rate_DANGER_INFLUENCED_AVG = (double)COUNT_TP_DANGER_INFLUENCED_AVG / numberOfSituations_DANGER_INFLUENCED_AVG;
+        return TP_rate_DANGER_INFLUENCED_AVG;
+    }
+
+    public double getTP_rate_NO_DANGER_INFLUENCED_AVG() {
+        TP_rate_NO_DANGER_INFLUENCED_AVG = (double)COUNT_TP_NO_DANGER_INFLUENCED_AVG / numberOfSituations_NO_DANGER_INFLUENCED_AVG;
+        return TP_rate_NO_DANGER_INFLUENCED_AVG;
     }
 }
