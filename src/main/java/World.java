@@ -36,15 +36,20 @@ public class World {
             }
         }
 
-//        int correct = 0;
-//        for (int i = 0; i < numberOfSituations; i++) {
-//            if ((i / (double) numberOfSituations) >= situationDistribution) situation = danger;
+        situation = noDanger;
+        int correct = 0;
+        int numberOfSituations_ = 2;
+        for (int i = 0; i < numberOfSituations_; i++) {
+            if ((i / (double) numberOfSituations_) >= situationDistribution) situation = danger;
             for (Agent a : agents) {
-                a.runInfluencedReaction();
-//                if (a.runAway() == (situation == 7)) correct++;
+                a.runPersonalIntention(situation);
             }
-//        }
-//        System.out.println("Correct: " + ((double)numberOfSituations/correct));
+            for (Agent a : agents) {
+                a.runInfluencedReaction(situation);
+                if (a.runAway() == (situation == 7)) correct++;
+            }
+        }
+        System.out.println("Correct: " + ((double)numberOfSituations_/correct));
     }
 
 

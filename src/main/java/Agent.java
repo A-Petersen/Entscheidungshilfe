@@ -60,19 +60,9 @@ public class Agent {
         }
     }
 
-    void runInfluencedReaction() {
+    void runInfluencedReaction(int situation) {
         List<Agent> agents = world.getAgents();
-//        double P_DANGER = 1;
-//        double P_NO_DANGER = 1;
-//        for (Agent a : agents) {
-//            P_DANGER *= a.getRunAwayIntention() ?
-//                    a.getTP_rate_DANGER() :
-//                    1.0 - a.getTP_rate_NO_DANGER();
-//            P_NO_DANGER *= a.getRunAwayIntention() ?
-//                    1.0 - a.getTP_rate_DANGER() :
-//                    a.getTP_rate_NO_DANGER();
-//        }
-//        System.out.println("P_DANGER: [" + P_DANGER + "]\tP_NO_DANGER: [" + P_NO_DANGER + "]");
+
         double TP_rate_DANGER_AGENTS;
         int dangerDetect = 0;
         for (Agent a : agents) {
@@ -80,17 +70,10 @@ public class Agent {
         }
         TP_rate_DANGER_AGENTS = (double)dangerDetect / agents.size();
 
-        double TP_rate_NO_DANGER_AGENTS;
-        int noDangerDetect = 0;
-        for (Agent a : agents) {
-            if (!a.getRunAwayIntention()) noDangerDetect++;
-        }
-        TP_rate_NO_DANGER_AGENTS = (double)noDangerDetect / agents.size();
-
-        double TPFP_Treshold = TP_rate_NO_DANGER + ((double)(TP_rate_DANGER - TP_rate_NO_DANGER) / 2);
+        double TPFP_Treshold = ( TP_rate_DANGER + (1 - TP_rate_NO_DANGER) ) / 2;
         if (TP_rate_DANGER_AGENTS > TPFP_Treshold) runAway = true;
 
-        System.out.println("AGENT[" + id + "]\tRUN: [" + runAway + "]\tD: [" + TP_rate_DANGER_AGENTS + "]- TH[" + TPFP_Treshold + "]");
+        System.out.println("AGENT[" + id + "]\tRUN: [" + runAway + "][" + situation + "]\tD: [" + TP_rate_DANGER_AGENTS + "]- TH[" + TPFP_Treshold + "]");
     }
 
     double getTP_rate_DANGER () {
