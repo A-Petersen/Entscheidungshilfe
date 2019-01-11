@@ -143,7 +143,7 @@ public class World extends org.jfree.ui.ApplicationFrame {
     }
 
     /**
-     * It creates a statistic of all Agents of Danger, True and False Positiv in percent.
+     * It creates a statistic of all Agents of danger, True and False Positiv in percent.
      */
     public void barChart_FP_TP() {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
