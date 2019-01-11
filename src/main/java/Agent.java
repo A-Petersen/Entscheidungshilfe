@@ -6,17 +6,54 @@ import java.util.Random;
 public class Agent {
 
     //  range 0.0d (inclusive) to 1.0d (exclusive)
+    /**
+     * Random generator
+     */
     private static Random rGen = new Random();
+
+    /**
+     *
+     */
     private static final double l_SD = 3.0;
+
+    /**
+     *
+     */
     private static final double u_SD = 5.0;
+
+    /**
+     *
+     */
     private static final double l_TH = 5.5;
+
+    /**
+     *
+     */
     private static final double u_TH = 8.5;
+
+    /**
+     * Agent id
+     */
     private static int agent_ids = 0;
 
+    /**
+     * ID
+     */
     private int id;
+
+    /**
+     * World Class
+     */
     private World world;
 
+    /**
+     * it is danger if is true
+     */
     private boolean runAway;
+
+    /**
+     * the mean of the threshold from agent
+     */
     private boolean runAwayThresholdMeanAgent;
     private boolean runAwayIntention;
 
@@ -70,19 +107,14 @@ public class Agent {
     void runPersonalIntention(int situation) {
         if (situation == World.danger) {
             agentSituation = gGenDanger.nextValue();
-        } else {
-            agentSituation = gGenNoDanger.nextValue();
-        }
-        runAwayIntention = agentSituation > threshold;
-
-        if (situation == World.danger) {
-            if (runAwayIntention) COUNT_TP_DANGER++;
+            if(runAwayIntention) COUNT_TP_DANGER++;
             numberOfSituations_DANGER++;
         } else {
+            agentSituation = gGenNoDanger.nextValue();
             if (!runAwayIntention) COUNT_TP_NO_DANGER++;
             numberOfSituations_NO_DANGER++;
         }
-
+        runAwayIntention = agentSituation > threshold;
         TP_rate_DANGER = getTP_rate_DANGER();
         TP_rate_NO_DANGER = getTP_rate_NO_DANGER();
         TPFP_Treshold = ( TP_rate_DANGER + (1 - TP_rate_NO_DANGER) ) / 2;
@@ -95,7 +127,6 @@ public class Agent {
      */
     void runInfluencedReaction(int situation) {
         List<Agent> agents = world.getAgents();
-
         double TP_rate_DANGER_AGENTS;
         double agentThreshold = 0;
         int dangerDetect = 0;
@@ -109,19 +140,17 @@ public class Agent {
 
         runAway = false;
         runAwayThresholdMeanAgent = false;
+
+        if (TP_rate_DANGER_AGENTS > agentThreshold) runAwayThresholdMeanAgent = true;
         if (TP_rate_DANGER_AGENTS > TPFP_Treshold) runAway = true;
         if (situation == World.danger) {
             if (runAway) COUNT_TP_DANGER_INFLUENCED++;
             numberOfSituations_DANGER_INFLUENCED++;
-        } else {
-            if (!runAway) COUNT_TP_NO_DANGER_INFLUENCED++;
-            numberOfSituations_NO_DANGER_INFLUENCED++;
-        }
-        if (TP_rate_DANGER_AGENTS > agentThreshold) runAwayThresholdMeanAgent = true;
-        if (situation == World.danger) {
             if (runAwayThresholdMeanAgent) COUNT_TP_DANGER_INFLUENCED_AVG++;
             numberOfSituations_DANGER_INFLUENCED_AVG++;
         } else {
+            if (!runAway) COUNT_TP_NO_DANGER_INFLUENCED++;
+            numberOfSituations_NO_DANGER_INFLUENCED++;
             if (!runAwayThresholdMeanAgent) COUNT_TP_NO_DANGER_INFLUENCED_AVG++;
             numberOfSituations_NO_DANGER_INFLUENCED_AVG++;
         }
@@ -146,54 +175,42 @@ public class Agent {
         return TP_rate_NO_DANGER;
     }
 
+
     public int getId() {
         return id;
     }
+
 
     public double getStandardDeviation() {
         return standardDeviation;
     }
 
+
     public double getThreshold() {
         return threshold;
     }
 
-    /**
-     *
-     * @return
-     */
+
     public double getAgentSituation() {
         return agentSituation;
     }
 
-    /**
-     *
-     * @return
-     */
+
     public boolean getRunAwayIntention() {
         return runAwayIntention;
     }
 
-    /**
-     *
-     * @return
-     */
+
     public boolean isRunAwayThresholdMeanAgent() {
         return runAwayThresholdMeanAgent;
     }
 
-    /**
-     *
-     * @return
-     */
+
     public boolean runAway() {
         return runAway;
     }
 
-    /**
-     *
-     * @return
-     */
+
     public double getTPFP_Treshold() {
         return TPFP_Treshold;
     }
@@ -208,7 +225,7 @@ public class Agent {
     }
 
     /**
-     *
+     * Get the value true positive of no danger influenced
      * @return
      */
     public double getTP_rate_NO_DANGER_INFLUENCED() {
@@ -217,8 +234,8 @@ public class Agent {
     }
 
     /**
-     *
-     * @return
+     * Get the average of all agent with the true positive.
+     * @return average of the true positive from danger influence
      */
     public double getTP_rate_DANGER_INFLUENCED_AVG() {
         TP_rate_DANGER_INFLUENCED_AVG = (double)COUNT_TP_DANGER_INFLUENCED_AVG / numberOfSituations_DANGER_INFLUENCED_AVG;
@@ -226,7 +243,7 @@ public class Agent {
     }
 
     /**
-     * The Average of influenced from True Positiv with no Danger
+     * Get the average of all agent with the true positive with no danger influenced
      * @return the average of True Positive(influenced) Rate
      */
     public double getTP_rate_NO_DANGER_INFLUENCED_AVG() {
