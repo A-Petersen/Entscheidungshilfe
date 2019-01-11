@@ -17,15 +17,38 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class World extends org.jfree.ui.ApplicationFrame {
-
+    /**
+     * The value of danger
+     */
     static final int danger = 7;
+
+    /**
+     * The value of no danger
+     */
     static final int noDanger = 4;
 
+    /**
+     * The distribution of the situation
+     */
     private double situationDistribution;
+
+    /**
+     * The number of the situation
+     */
     private int numberOfSituations;
 
+    /**
+     * List of agent
+     */
     private List<Agent> agents;
 
+    /**
+     * Constructor to create agent with specified data
+     * @param situationDistribution the distribution of the situation
+     * @param numberOfSituations the number of the situations
+     * @param numberOfAgents the number of agent
+     * @param title title for jfreechart
+     */
     public World(double situationDistribution, int numberOfSituations, int numberOfAgents, String title) {
         super(title);
         agents = new LinkedList<Agent>();
@@ -36,6 +59,11 @@ public class World extends org.jfree.ui.ApplicationFrame {
         }
     }
 
+    // Runaway gefahr erkannt
+
+    /**
+     * Starts to train the Agents multi times. Each Agent get train to check if it is danger or not danger.
+     */
     public void runWorld() {
         int situation = noDanger;
         for (int i = 0; i < numberOfSituations; i++) {
@@ -71,11 +99,17 @@ public class World extends org.jfree.ui.ApplicationFrame {
         System.out.println("Correct: " + (correct_MEAN_TH/((double)numberOfSituations_*agents.size())));
     }
 
-
+    /**
+     * Get a list of all Agents
+     * @return
+     */
     public List<Agent> getAgents() {
         return agents;
     }
 
+    /**
+     * Create a graph about Agents with False or True Positive
+     */
     public void getXYagents() {
         int i = 1;
         XYSeriesCollection collection = new XYSeriesCollection();
@@ -108,35 +142,9 @@ public class World extends org.jfree.ui.ApplicationFrame {
         punkteframe.setVisible(true);
     }
 
-    public void populationChart_FP_TP() {
-
-        DefaultKeyedValues2DDataset data = new DefaultKeyedValues2DDataset();
-        int i = 1;
-        for (Agent a : agents) {
-            data.addValue(100 * (1 - a.getTP_rate_NO_DANGER()), "FP", i + "");
-            data.addValue((-100) * a.getTP_rate_DANGER(), "TP", i + "");
-            i++;
-        }
-
-        JFreeChart chart = ChartFactory.createStackedBarChart(
-                            "True and False Positives",
-                            "Agent_ID",     // domain axis label
-                            "Percent (%)", // range axis label
-                            data,         // data
-                            PlotOrientation.HORIZONTAL,
-                            true,            // include legend
-                            true,            // tooltips
-                            false            // urls
-               );
-
-        ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
-        setContentPane(chartPanel);
-        this.pack();
-        RefineryUtilities.centerFrameOnScreen(this);
-        this.setVisible(true);
-    }
-
+    /**
+     * It creates a statistic of all Agents of Danger, True and False Positiv in percent.
+     */
     public void barChart_FP_TP() {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
@@ -171,7 +179,6 @@ public class World extends org.jfree.ui.ApplicationFrame {
         pack();
         RefineryUtilities.centerFrameOnScreen(this);
         setVisible(true);
-
     }
 }
 

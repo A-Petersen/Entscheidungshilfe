@@ -49,6 +49,10 @@ public class Agent {
     private GaussianGenerator gGenDanger;
     private GaussianGenerator gGenNoDanger;
 
+    /**
+     *
+     * @param world
+     */
     public Agent(World world) {
         this.world = world;
         this.id = agent_ids;
@@ -59,6 +63,10 @@ public class Agent {
         agent_ids++;
     }
 
+    /**
+     *
+     * @param situation
+     */
     void runPersonalIntention(int situation) {
         if (situation == World.danger) {
             agentSituation = gGenDanger.nextValue();
@@ -80,6 +88,11 @@ public class Agent {
         TPFP_Treshold = ( TP_rate_DANGER + (1 - TP_rate_NO_DANGER) ) / 2;
     }
 
+
+    /**
+     *
+     * @param situation
+     */
     void runInfluencedReaction(int situation) {
         List<Agent> agents = world.getAgents();
 
@@ -93,7 +106,6 @@ public class Agent {
         agentThreshold /= agents.size();
 
         TP_rate_DANGER_AGENTS = (double)dangerDetect / agents.size();
-
 
         runAway = false;
         runAwayThresholdMeanAgent = false;
@@ -113,15 +125,22 @@ public class Agent {
             if (!runAwayThresholdMeanAgent) COUNT_TP_NO_DANGER_INFLUENCED_AVG++;
             numberOfSituations_NO_DANGER_INFLUENCED_AVG++;
         }
-
         System.out.println("AGENT[" + id + "]\tRUN: [" + runAway + "][" + situation + "]\tMEAN: [" + TP_rate_DANGER_AGENTS + "] - TH[" + TPFP_Treshold + "]\t - MEAN_TH[" + agentThreshold + "]");
     }
 
+    /**
+     * The calculation of True Positive rate that is Danger
+     * @return True Positiv Rate
+     */
     double getTP_rate_DANGER () {
         TP_rate_DANGER = (double)COUNT_TP_DANGER / numberOfSituations_DANGER;
         return TP_rate_DANGER;
     }
 
+    /**
+     * The calculation of True Positive rate that is not Danger
+     * @return False Positive
+     */
     double getTP_rate_NO_DANGER () {
         TP_rate_NO_DANGER = (double)COUNT_TP_NO_DANGER / numberOfSituations_NO_DANGER;
         return TP_rate_NO_DANGER;
@@ -139,41 +158,77 @@ public class Agent {
         return threshold;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getAgentSituation() {
         return agentSituation;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean getRunAwayIntention() {
         return runAwayIntention;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isRunAwayThresholdMeanAgent() {
         return runAwayThresholdMeanAgent;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean runAway() {
         return runAway;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getTPFP_Treshold() {
         return TPFP_Treshold;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getTP_rate_DANGER_INFLUENCED() {
         TP_rate_DANGER_INFLUENCED = (double)COUNT_TP_DANGER_INFLUENCED / numberOfSituations_DANGER_INFLUENCED;
         return TP_rate_DANGER_INFLUENCED;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getTP_rate_NO_DANGER_INFLUENCED() {
         TP_rate_NO_DANGER_INFLUENCED = (double)COUNT_TP_NO_DANGER_INFLUENCED / numberOfSituations_NO_DANGER_INFLUENCED;
         return TP_rate_NO_DANGER_INFLUENCED;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getTP_rate_DANGER_INFLUENCED_AVG() {
         TP_rate_DANGER_INFLUENCED_AVG = (double)COUNT_TP_DANGER_INFLUENCED_AVG / numberOfSituations_DANGER_INFLUENCED_AVG;
         return TP_rate_DANGER_INFLUENCED_AVG;
     }
 
+    /**
+     * The Average of influenced from True Positiv with no Danger
+     * @return the average of True Positive(influenced) Rate
+     */
     public double getTP_rate_NO_DANGER_INFLUENCED_AVG() {
         TP_rate_NO_DANGER_INFLUENCED_AVG = (double)COUNT_TP_NO_DANGER_INFLUENCED_AVG / numberOfSituations_NO_DANGER_INFLUENCED_AVG;
         return TP_rate_NO_DANGER_INFLUENCED_AVG;
