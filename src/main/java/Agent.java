@@ -12,22 +12,22 @@ public class Agent {
     private static Random rGen = new Random();
 
     /**
-     *
+     * lower standard deviation
      */
     private static final double l_SD = 3.0;
 
     /**
-     *
+     * upper standard deviation
      */
     private static final double u_SD = 5.0;
 
     /**
-     *
+     * lower threshold
      */
     private static final double l_TH = 5.5;
 
     /**
-     *
+     * upper threshold
      */
     private static final double u_TH = 8.5;
 
@@ -47,7 +47,7 @@ public class Agent {
     private World world;
 
     /**
-     * it is danger if is true
+     * run away if it is danger
      */
     private boolean runAway;
 
@@ -55,15 +55,50 @@ public class Agent {
      * the mean of the threshold from agent
      */
     private boolean runAwayThresholdMeanAgent;
+
+    /**
+     * the intention to run away if it is danger
+     */
     private boolean runAwayIntention;
 
+    /**
+     * Counter of true positive danger
+     */
     private int COUNT_TP_DANGER = 0;
+
+    /**
+     * True Positive rate of danger
+     */
     private double TP_rate_DANGER = 0;
+
+    /**
+     * the true positive counter of no danger
+     */
     private int COUNT_TP_NO_DANGER = 0;
+
+    /**
+     * the true positive rate of no danger
+     */
     private double TP_rate_NO_DANGER = 0;
+
+    /**
+     * the influenced true positive count of danger
+     */
     private int COUNT_TP_DANGER_INFLUENCED = 0;
+
+    /**
+     * the influenced true positive rate of danger
+     */
     private double TP_rate_DANGER_INFLUENCED = 0;
+
+    /**
+     * the influenced true positive count of no danger
+     */
     private int COUNT_TP_NO_DANGER_INFLUENCED = 0;
+
+    /**
+     * the unfluenced true positive rate of no danger
+     */
     private double TP_rate_NO_DANGER_INFLUENCED = 0;
     private int COUNT_TP_DANGER_INFLUENCED_AVG = 0;
     private double TP_rate_DANGER_INFLUENCED_AVG = 0;
@@ -87,7 +122,7 @@ public class Agent {
     private GaussianGenerator gGenNoDanger;
 
     /**
-     *
+     * Constructor Agent to crea
      * @param world
      */
     public Agent(World world) {
@@ -157,19 +192,13 @@ public class Agent {
         System.out.println("AGENT[" + id + "]\tRUN: [" + runAway + "][" + situation + "]\tMEAN: [" + TP_rate_DANGER_AGENTS + "] - TH[" + TPFP_Treshold + "]\t - MEAN_TH[" + agentThreshold + "]");
     }
 
-    /**
-     * The calculation of True Positive rate that is Danger
-     * @return True Positiv Rate
-     */
+
     double getTP_rate_DANGER () {
         TP_rate_DANGER = (double)COUNT_TP_DANGER / numberOfSituations_DANGER;
         return TP_rate_DANGER;
     }
 
-    /**
-     * The calculation of True Positive rate that is not Danger
-     * @return False Positive
-     */
+
     double getTP_rate_NO_DANGER () {
         TP_rate_NO_DANGER = (double)COUNT_TP_NO_DANGER / numberOfSituations_NO_DANGER;
         return TP_rate_NO_DANGER;
@@ -215,37 +244,25 @@ public class Agent {
         return TPFP_Treshold;
     }
 
-    /**
-     *
-     * @return
-     */
+
     public double getTP_rate_DANGER_INFLUENCED() {
         TP_rate_DANGER_INFLUENCED = (double)COUNT_TP_DANGER_INFLUENCED / numberOfSituations_DANGER_INFLUENCED;
         return TP_rate_DANGER_INFLUENCED;
     }
 
-    /**
-     * Get the value true positive of no danger influenced
-     * @return
-     */
+
     public double getTP_rate_NO_DANGER_INFLUENCED() {
         TP_rate_NO_DANGER_INFLUENCED = (double)COUNT_TP_NO_DANGER_INFLUENCED / numberOfSituations_NO_DANGER_INFLUENCED;
         return TP_rate_NO_DANGER_INFLUENCED;
     }
 
-    /**
-     * Get the average of all agent with the true positive.
-     * @return average of the true positive from danger influence
-     */
+
     public double getTP_rate_DANGER_INFLUENCED_AVG() {
         TP_rate_DANGER_INFLUENCED_AVG = (double)COUNT_TP_DANGER_INFLUENCED_AVG / numberOfSituations_DANGER_INFLUENCED_AVG;
         return TP_rate_DANGER_INFLUENCED_AVG;
     }
 
-    /**
-     * Get the average of all agent with the true positive with no danger influenced
-     * @return the average of True Positive(influenced) Rate
-     */
+
     public double getTP_rate_NO_DANGER_INFLUENCED_AVG() {
         TP_rate_NO_DANGER_INFLUENCED_AVG = (double)COUNT_TP_NO_DANGER_INFLUENCED_AVG / numberOfSituations_NO_DANGER_INFLUENCED_AVG;
         return TP_rate_NO_DANGER_INFLUENCED_AVG;
