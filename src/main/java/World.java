@@ -7,7 +7,6 @@ import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYDotRenderer;
 import org.jfree.chart.ui.ApplicationFrame;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.general.DefaultKeyedValues2DDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.RefineryUtilities;
@@ -16,62 +15,73 @@ import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * The class World, extends jfree for the barchart.
+ */
 public class World extends org.jfree.ui.ApplicationFrame {
     /**
-     * The value of danger
+     * Int representation of a danger situation
      */
     static final int danger = 7;
 
     /**
-     * The value of no danger
+     * Int representation of a harmless situation
      */
     static final int noDanger = 4;
 
     /**
-     * The distribution of the situation
+     * The distribution of harmless and danger situations
      */
     private double situationDistribution;
 
     /**
-     * The number of the situation
+     * Amount of trainings situations simulated
      */
-    private int numberOfSituations;
+    private int nTrainSituations;
+
+    /**
+     * Amount of test situations simulated
+     */
+    private int nTestSituations;
 
     /**
      * List of agent
      */
     private List<Agent> agents;
 
+    private boolean verbose = false;
+
     /**
-     * Constructor to create agent with specified data
-     * @param situationDistribution the distribution of the situation
-     * @param numberOfSituations the number of the situations
-     * @param numberOfAgents the number of agent
-     * @param title title for jfreechart
+     * Constructor to create the world with specified data.
+     * @param situationDistribution the distribution of harmless and danger situations
+     * @param numberOfTrainSituations amount of the trainingsituations
+     * @param numberOfTestSituations amount of the testsituations
+     * @param nAgents amount of agents
+     * @param verbose debugging
      */
-    public World(double situationDistribution, int numberOfSituations, int numberOfAgents, String title) {
-        super(title);
+    public World(double situationDistribution, int numberOfTrainSituations, int numberOfTestSituations, int nAgents, boolean verbose) {
+        super("");
+        this.verbose = verbose;
         agents = new LinkedList<Agent>();
         this.situationDistribution = situationDistribution;
-        this.numberOfSituations = numberOfSituations;
-        while(numberOfAgents-- > 0) {
+        this.nTrainSituations = numberOfTrainSituations;
+        this.nTestSituations = numberOfTestSituations;
+        while(nAgents-- > 0) {
             agents.add(new Agent(this));
         }
     }
 
-    // Runaway gefahr erkannt
-
     /**
-     * Starts to train the Agents multi times. Each Agent get train to check if it is danger or not danger.
+     * Starts the World within its specified parameters.
      */
     public void runWorld() {
         int situation = noDanger;
-        for (int i = 0; i < numberOfSituations; i++) {
-            if ((i / (double)numberOfSituations) >= situationDistribution) situation = danger;
+        for (int i = 0; i < nTrainSituations; i++) {
+            if ((i / (double) nTrainSituations) >= situationDistribution) situation = danger;
             for (Agent a : agents) {
                 a.runPersonalIntention(situation);
 
-                System.out.println(
+                if (verbose) System.out.println(
                         "Agent[" + a.getId() +
                         "]:\tSD: [" + a.getStandardDeviation() + "]:\tTH: [" + a.getThreshold() + "]" +
                         "\tAgent Situation: [" + a.getAgentSituation() + "][" + situation + "]\t" + "\t\tRes[ " + ((a.getRunAwayIntention() && situation == 7) ? "CORRECT ]" : "FALSE ]") +
@@ -83,7 +93,7 @@ public class World extends org.jfree.ui.ApplicationFrame {
         situation = noDanger;
         int correct = 0;
         int correct_MEAN_TH = 0;
-        int numberOfSituations_ = 10000;
+        int numberOfSituations_ = nTestSituations;
         for (int i = 0; i < numberOfSituations_; i++) {
             if ((i / (double) numberOfSituations_) >= situationDistribution) situation = danger;
             for (Agent a : agents) {
@@ -101,49 +111,15 @@ public class World extends org.jfree.ui.ApplicationFrame {
 
     /**
      * Get a list of all Agents
-     * @return
+     * @return List of Agents
      */
     public List<Agent> getAgents() {
         return agents;
     }
 
     /**
-     * Create a graph about Agents with False or True Positive
-     */
-    public void getXYagents() {
-        int i = 1;
-        XYSeriesCollection collection = new XYSeriesCollection();
-        XYSeries TP_DANGER = new XYSeries("TP_DANGER");
-        XYSeries FP_DANGER = new XYSeries("FP_DANGER");
-        for (Agent a : agents) {
-            TP_DANGER.add(i, a.getTP_rate_DANGER());
-            FP_DANGER.add(i, 1 - a.getTP_rate_NO_DANGER());
-            i++;
-        }
-        collection.addSeries(TP_DANGER);
-        collection.addSeries(FP_DANGER);
-
-        XYDotRenderer dot = new XYDotRenderer();
-        dot.setDotHeight(5);
-        dot.setDotWidth(5);
-
-        NumberAxis xax = new NumberAxis("Agents");
-        NumberAxis yax = new NumberAxis("FP / TP");
-
-        XYPlot plot = new XYPlot(collection, xax, yax, dot);
-
-        JFreeChart chart2 = new JFreeChart(plot);
-
-        ApplicationFrame punkteframe = new ApplicationFrame("Punkte"); //"Punkte" entspricht der Ueberschrift des Fensters
-
-        ChartPanel chartPanel2 = new ChartPanel(chart2);
-        punkteframe.setContentPane(chartPanel2);
-        punkteframe.pack();
-        punkteframe.setVisible(true);
-    }
-
-    /**
-     * It creates a statistic of all Agents of danger, True and False Positiv in percent.
+     * It creates a BarChart for all Agents. Representing thr situation danger with True and False Positives in percent.
+     * All three cases will be shown. Not influenced, influenced and influenced plus group average for calculations.
      */
     public void barChart_FP_TP() {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();

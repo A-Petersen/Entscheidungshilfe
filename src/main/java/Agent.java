@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Random;
 
 public class Agent {
-
-    //  range 0.0d (inclusive) to 1.0d (exclusive)
     /**
      * Random generator
      */
@@ -32,7 +30,7 @@ public class Agent {
     private static final double u_TH = 8.5;
 
     /**
-     * Agent id
+     * Agent id_counter
      */
     private static int agent_ids = 0;
 
@@ -47,83 +45,131 @@ public class Agent {
     private World world;
 
     /**
-     * run away if it is danger
+     * True if the situation is dangerous, influenced by the group of agents.
      */
     private boolean runAway;
 
     /**
-     * the mean of the threshold from agent
+     * True if the situation is dangerous, influenced and calculated with the mean threshold of the group of agents.
      */
     private boolean runAwayThresholdMeanAgent;
 
     /**
-     * the intention to run away if it is danger
+     * True if the situation is dangerous, personal intention.
      */
     private boolean runAwayIntention;
 
     /**
-     * Counter of true positive danger
+     * Counter of true positives for dangerous situations. Personal.
      */
     private int COUNT_TP_DANGER = 0;
 
     /**
-     * True Positive rate of danger
+     * True Positive rate for dangerous situations. Personal.
      */
     private double TP_rate_DANGER = 0;
 
     /**
-     * the true positive counter of no danger
+     * Counter of true positives for harmless situations. Personal.
      */
     private int COUNT_TP_NO_DANGER = 0;
 
     /**
-     * the true positive rate of no danger
+     * True Positive rate for harmless situations. Personal.
      */
     private double TP_rate_NO_DANGER = 0;
 
     /**
-     * the influenced true positive count of danger
+     * Counter of true positives for dangerous situations. Influenced by the group of agents.
      */
     private int COUNT_TP_DANGER_INFLUENCED = 0;
 
     /**
-     * the influenced true positive rate of danger
+     * True Positive rate for dangerous situations. Influenced by the group of agents.
      */
     private double TP_rate_DANGER_INFLUENCED = 0;
 
     /**
-     * the influenced true positive count of no danger
+     * Counter of true positives for harmless situations. Influenced by the group of agents.
      */
     private int COUNT_TP_NO_DANGER_INFLUENCED = 0;
 
     /**
-     * the unfluenced true positive rate of no danger
+     * True Positive rate for harmless situations. Influenced by the group of agents.
      */
     private double TP_rate_NO_DANGER_INFLUENCED = 0;
+    /**
+     * Counter of true positives for dangerous situations. Influenced and calculated with the mean threshold of the group of agents.
+     */
     private int COUNT_TP_DANGER_INFLUENCED_AVG = 0;
+    /**
+     * True Positive rate for dangerous situations.  Influenced and calculated with the mean threshold of the group of agents.
+     */
     private double TP_rate_DANGER_INFLUENCED_AVG = 0;
+    /**
+     * Counter of true positives for harmless situations. Influenced and calculated with the mean threshold of the group of agents.
+     */
     private int COUNT_TP_NO_DANGER_INFLUENCED_AVG = 0;
+    /**
+     * True Positive rate for harmless situations. Influenced and calculated with the mean threshold of the group of agents.
+     */
     private double TP_rate_NO_DANGER_INFLUENCED_AVG = 0;
 
+    /**
+     * Amount of dangerous situations simulated. Personal.
+     */
     private int numberOfSituations_DANGER = 0;
+    /**
+     * Amount of harmless situations simulated. Personal.
+     */
     private int numberOfSituations_NO_DANGER = 0;
+    /**
+     * Amount of dangerous situations simulated. Influenced by the group of agents.
+     */
     private int numberOfSituations_DANGER_INFLUENCED = 0;
+    /**
+     * Amount of harmless situations simulated. Influenced by the group of agents.
+     */
     private int numberOfSituations_NO_DANGER_INFLUENCED = 0;
+    /**
+     * Amount of dangerous situations simulated. Influenced and calculated with the mean threshold of the group of agents.
+     */
     private int numberOfSituations_DANGER_INFLUENCED_AVG = 0;
+    /**
+     * Amount of harmless situations simulated. Influenced and calculated with the mean threshold of the group of agents.
+     */
     private int numberOfSituations_NO_DANGER_INFLUENCED_AVG = 0;
 
+    /**
+     * Standard deviation of the GaussianGenerator.
+     */
     private double standardDeviation;
+    /**
+     * Random threshold for personal decisions.
+     */
     private double threshold;
+    /**
+     * Calculated threshold from True- and False-Positives.
+     */
     private double TPFP_Treshold;
 
+    /**
+     * With RandomGaussianGenerator generated agent situation.
+     */
     private double agentSituation;
 
+    /**
+     * RandomGaussianGenerator for dangerous situations.
+     */
     private GaussianGenerator gGenDanger;
+    /**
+     * RandomGaussianGenerator for harmless situations.
+     */
     private GaussianGenerator gGenNoDanger;
 
     /**
-     * Constructor Agent to crea
-     * @param world
+     * Constructor for Agent
+     * @param world the world the agent exists in.
      */
     public Agent(World world) {
         this.world = world;
@@ -137,7 +183,7 @@ public class Agent {
 
     /**
      *
-     * @param situation
+     * @param situation current situation in the World
      */
     void runPersonalIntention(int situation) {
         if (situation == World.danger) {
@@ -192,19 +238,6 @@ public class Agent {
         System.out.println("AGENT[" + id + "]\tRUN: [" + runAway + "][" + situation + "]\tMEAN: [" + TP_rate_DANGER_AGENTS + "] - TH[" + TPFP_Treshold + "]\t - MEAN_TH[" + agentThreshold + "]");
     }
 
-
-    double getTP_rate_DANGER () {
-        TP_rate_DANGER = (double)COUNT_TP_DANGER / numberOfSituations_DANGER;
-        return TP_rate_DANGER;
-    }
-
-
-    double getTP_rate_NO_DANGER () {
-        TP_rate_NO_DANGER = (double)COUNT_TP_NO_DANGER / numberOfSituations_NO_DANGER;
-        return TP_rate_NO_DANGER;
-    }
-
-
     public int getId() {
         return id;
     }
@@ -237,6 +270,18 @@ public class Agent {
 
     public boolean runAway() {
         return runAway;
+    }
+
+
+    double getTP_rate_DANGER () {
+        TP_rate_DANGER = (double)COUNT_TP_DANGER / numberOfSituations_DANGER;
+        return TP_rate_DANGER;
+    }
+
+
+    double getTP_rate_NO_DANGER () {
+        TP_rate_NO_DANGER = (double)COUNT_TP_NO_DANGER / numberOfSituations_NO_DANGER;
+        return TP_rate_NO_DANGER;
     }
 
 
