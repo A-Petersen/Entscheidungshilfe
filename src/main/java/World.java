@@ -1,14 +1,8 @@
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYDotRenderer;
-import org.jfree.chart.ui.ApplicationFrame;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.RefineryUtilities;
 
 import java.awt.*;
@@ -54,8 +48,8 @@ public class World extends org.jfree.ui.ApplicationFrame {
     /**
      * Constructor to create the world with specified data.
      * @param situationDistribution the distribution of harmless and danger situations
-     * @param numberOfTrainSituations amount of the trainingsituations
-     * @param numberOfTestSituations amount of the testsituations
+     * @param numberOfTrainSituations amount of the trainings situations
+     * @param numberOfTestSituations amount of the test situations
      * @param nAgents amount of agents
      * @param verbose debugging
      */
@@ -66,7 +60,7 @@ public class World extends org.jfree.ui.ApplicationFrame {
         this.situationDistribution = situationDistribution;
         this.nTrainSituations = numberOfTrainSituations;
         this.nTestSituations = numberOfTestSituations;
-        while(nAgents-- > 0) {
+        while(nAgents-- > 0) { // create Agents
             agents.add(new Agent(this));
         }
     }
@@ -75,10 +69,11 @@ public class World extends org.jfree.ui.ApplicationFrame {
      * Starts the World within its specified parameters.
      */
     public void runWorld() {
-        int situation = noDanger;
+        // Trainings cycles
+        int situation = noDanger; // start with harmless situations
         for (int i = 0; i < nTrainSituations; i++) {
-            if ((i / (double) nTrainSituations) >= situationDistribution) situation = danger;
-            for (Agent a : agents) {
+            if ((i / (double) nTrainSituations) >= situationDistribution) situation = danger; // check if following situations have to be dangerous based on the distribution
+            for (Agent a : agents) { // run personal intentions of the agents (pure training)
                 a.runPersonalIntention(situation);
 
                 if (verbose) System.out.println(
@@ -90,19 +85,20 @@ public class World extends org.jfree.ui.ApplicationFrame {
             }
         }
 
-        situation = noDanger;
+        // Test cycles
+        situation = noDanger; // start with harmless situations
         int correct = 0;
         int correct_MEAN_TH = 0;
         int numberOfSituations_ = nTestSituations;
         for (int i = 0; i < numberOfSituations_; i++) {
-            if ((i / (double) numberOfSituations_) >= situationDistribution) situation = danger;
+            if ((i / (double) numberOfSituations_) >= situationDistribution) situation = danger; // check if following situations have to be dangerous based on the distribution
             for (Agent a : agents) {
-                a.runPersonalIntention(situation);
+                a.runPersonalIntention(situation); // run personal intentions of the agents
             }
             for (Agent a : agents) {
-                a.runInfluencedReaction(situation);
-                if (a.runAway() == (situation == 7)) correct++;
-                if (a.isRunAwayThresholdMeanAgent() == (situation == 7)) correct_MEAN_TH++;
+                a.runInfluencedReaction(situation); // run personal influenced reactions of the agents
+                if (a.runAway() == (situation == 7)) correct++; // count if the influenced reaction was correct
+                if (a.isRunAwayThresholdMeanAgent() == (situation == 7)) correct_MEAN_TH++; // count if the influenced incl. average threshold reaction was correct
             }
         }
         System.out.println("Correct: " + (correct/((double)numberOfSituations_*agents.size())));
@@ -126,14 +122,16 @@ public class World extends org.jfree.ui.ApplicationFrame {
 
         int i = 1;
         for (Agent a : agents) {
+            // personal intention Bars
             dataset.addValue(100 * (1 - a.getTP_rate_NO_DANGER()), "FP", i + "");
             dataset.addValue((100) * a.getTP_rate_DANGER(), "TP", i + "");
-
+            // Influenced Bars
             dataset.addValue(100 * (1 - a.getTP_rate_NO_DANGER_INFLUENCED()), "FP_INFLUENCED", i + "");
             dataset.addValue((100) * a.getTP_rate_DANGER_INFLUENCED(), "TP_INFLUENCED", i + "");
             i++;
         }
 
+        // Influenced and average threshold Bars
         dataset.addValue(100 * (1 - agents.get(0).getTP_rate_NO_DANGER_INFLUENCED_AVG()), "FP_INFLUENCED_AVG", "AVG");
         dataset.addValue((100) * agents.get(0).getTP_rate_DANGER_INFLUENCED_AVG(), "TP_INFLUENCED_AVG", "AVG");
 

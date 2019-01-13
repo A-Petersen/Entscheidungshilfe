@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a6b4365-2fba-4efe-8a9e-94b0e5c96b38" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/Agent.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/World.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Agent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/World.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Agent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Agent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/World.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/World.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,76 +30,18 @@
     <expand />
     <select />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-473758664">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="3" />
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.21" value="2" />
-          <entry key="project.open.time.3" value="1" />
-          <entry key="project.opened" value="4" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="PNG" value="1" />
-          <entry key="class" value="2" />
-          <entry key="java" value="8" />
-          <entry key="xml" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="CLASS" value="2" />
-          <entry key="Image" value="1" />
-          <entry key="JAVA" value="8" />
-          <entry key="XML" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="class" value="1" />
-          <entry key="java" value="3652" />
-          <entry key="txt" value="20" />
-          <entry key="xml" value="11" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="CLASS" value="1" />
-          <entry key="JAVA" value="3652" />
-          <entry key="PLAIN_TEXT" value="20" />
-          <entry key="XML" value="11" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Agent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="7" lean-forward="true" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
+            <state relative-caret-position="2454">
+              <caret line="216" column="46" selection-start-line="216" selection-start-column="46" selection-end-line="216" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5379#5380#0" expanded="true" />
-                <element signature="e#5404#5405#0" expanded="true" />
-                <element signature="e#5448#5449#0" expanded="true" />
-                <element signature="e#5488#5489#0" expanded="true" />
-                <element signature="e#5701#5702#0" expanded="true" />
-                <element signature="e#5733#5734#0" expanded="true" />
-                <element signature="e#5483#5484#0" expanded="true" />
-                <element signature="e#5520#5521#0" expanded="true" />
-                <element signature="e#5565#5566#0" expanded="true" />
-                <element signature="e#5604#5605#0" expanded="true" />
-                <element signature="e#5657#5658#0" expanded="true" />
-                <element signature="e#5705#5706#0" expanded="true" />
-                <element signature="e#5738#5739#0" expanded="true" />
-                <element signature="e#5768#5769#0" expanded="true" />
-                <element signature="e#5812#5813#0" expanded="true" />
-                <element signature="e#5848#5849#0" expanded="true" />
+                <element signature="e#3978#5469#0" />
+                <element signature="e#6842#7067#0" />
+                <element signature="e#7074#7314#0" />
               </folding>
             </state>
           </provider>
@@ -107,11 +50,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/World.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-413">
-              <caret line="117" column="32" lean-forward="true" selection-start-line="117" selection-start-column="32" selection-end-line="117" selection-end-column="32" />
+            <state relative-caret-position="220">
+              <caret line="53" column="31" lean-forward="true" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="31" />
               <folding>
-                <element signature="e#3363#3364#0" expanded="true" />
-                <element signature="e#3392#3393#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#3951#3952#0" expanded="true" />
+                <element signature="e#3980#3981#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -120,8 +64,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="32" lean-forward="true" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
+            <state relative-caret-position="140">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -143,16 +87,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/World.java" />
+        <option value="$PROJECT_DIR$/src/main/java/main.java" />
         <option value="$PROJECT_DIR$/src/main/java/Agent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/World.java" />
       </list>
     </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="MavenProjectNavigator">
     <treeState>
@@ -181,7 +120,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="width" value="1699" />
     <option name="height" value="1029" />
@@ -191,7 +130,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -222,128 +160,16 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547245656014" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547390850300" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-  </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Agent.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/World.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/main.java</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/bilder/chart_danger_fp_tp.PNG</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -396,6 +222,7 @@
       <workItem from="1547118121340" duration="4158000" />
       <workItem from="1547217900349" duration="2550000" />
       <workItem from="1547228344100" duration="14462000" />
+      <workItem from="1547246020100" duration="5720000" />
     </task>
     <task id="LOCAL-00001" summary="java doc geschrieben">
       <created>1547239823074</created>
@@ -425,11 +252,18 @@
       <option name="project" value="LOCAL" />
       <updated>1547244970127</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="java doc geschrieben">
+      <created>1547249503935</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1547249503935</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23787000" />
+    <option name="totallyTimeSpent" value="29507000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -441,30 +275,33 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="0" width="1699" height="1029" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.027455766" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.114072494" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info id="Capture Tool" order="6" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Statistic" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32849163" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3295964" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3295964" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32849163" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.31852654" />
       <window_info anchor="bottom" id="Tool Output" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32847533" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32827735" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="12" weight="0.1329609" />
       <window_info anchor="bottom" id="ANTLR Preview" order="13" />
+      <window_info anchor="right" id="Maven" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -511,9 +348,6 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="java doc geschrieben" />
     <option name="LAST_COMMIT_MESSAGE" value="java doc geschrieben" />
@@ -539,60 +373,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/util/Random.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="530" column="18" selection-start-line="530" selection-start-column="18" selection-end-line="530" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/jfree/jfreechart/1.5.0/jfreechart-1.5.0-sources.jar!/org/jfree/data/xy/XYSeriesCollection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="91" column="31" selection-start-line="91" selection-start-column="13" selection-end-line="91" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/util/Random.java" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/jfree/jfreechart/1.5.0/jfreechart-1.5.0-sources.jar!/org/jfree/data/xy/XYSeriesCollection.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="32" lean-forward="true" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
+        <state relative-caret-position="140">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/World.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-413">
-          <caret line="117" column="32" lean-forward="true" selection-start-line="117" selection-start-column="32" selection-end-line="117" selection-end-column="32" />
+        <state relative-caret-position="220">
+          <caret line="53" column="31" lean-forward="true" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="31" />
           <folding>
-            <element signature="e#3363#3364#0" expanded="true" />
-            <element signature="e#3392#3393#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#3951#3952#0" expanded="true" />
+            <element signature="e#3980#3981#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Agent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="7" lean-forward="true" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
+        <state relative-caret-position="2454">
+          <caret line="216" column="46" selection-start-line="216" selection-start-column="46" selection-end-line="216" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5379#5380#0" expanded="true" />
-            <element signature="e#5404#5405#0" expanded="true" />
-            <element signature="e#5448#5449#0" expanded="true" />
-            <element signature="e#5488#5489#0" expanded="true" />
-            <element signature="e#5701#5702#0" expanded="true" />
-            <element signature="e#5733#5734#0" expanded="true" />
-            <element signature="e#5483#5484#0" expanded="true" />
-            <element signature="e#5520#5521#0" expanded="true" />
-            <element signature="e#5565#5566#0" expanded="true" />
-            <element signature="e#5604#5605#0" expanded="true" />
-            <element signature="e#5657#5658#0" expanded="true" />
-            <element signature="e#5705#5706#0" expanded="true" />
-            <element signature="e#5738#5739#0" expanded="true" />
-            <element signature="e#5768#5769#0" expanded="true" />
-            <element signature="e#5812#5813#0" expanded="true" />
-            <element signature="e#5848#5849#0" expanded="true" />
+            <element signature="e#3978#5469#0" />
+            <element signature="e#6842#7067#0" />
+            <element signature="e#7074#7314#0" />
           </folding>
         </state>
       </provider>
